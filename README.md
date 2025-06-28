@@ -99,126 +99,74 @@ Website-LMS-Altair-EDU/
 
 
 <!-- STRUKTUR FOLDER V2 -->
-/altair-edu/                      # Root folder proyek Altair Edu
+/web-lms/
+├── public/                    # static public assets (served directly)
+│   ├── index.html
+│   ├── about.html
+│   ├── contact.html
+│   ├── login.html
+│   ├── register.html
+│   └── favicon.ico
 │
-├── .env                          # Environment variables (jangan di-commit) ✅
-├── .gitignore                    # Abaikan file sensitif & sementara ✅
-├── README.md                     # Dokumentasi umum proyek ✅
-├── requirements.txt              # Daftar dependensi Python ✅
-├── config.py                     # Konfigurasi global untuk Flask ✅
-├── app.py                        # Entry point aplikasi Flask (atau manage.py untuk Django) ✅
-│
-├── templates/                    # Template HTML (Jinja2 untuk Flask/Django)
-│   ├── base.html                 # Template dasar/layout
-│   ├── index.html                # Halaman utama (landing) ✅
-│   ├── about.html                # Tentang Altair Edu ✅
-│   ├── contact.html              # Kontak & form feedback
-│   ├── login.html                # Form login user ✅
-│   ├── register.html             # Form registrasi user ✅
-│   ├── gamifikasi.html           # Penjelasan sistem XP & badge
-│   ├── dashboard/                # Template area dashboard user ✅
-│   │   ├── index.html
-│   │   ├── profile.html
-│   │   ├── progress.html 
-│   │   ├── leaderboard.html
-│   │   ├── quest.html
-│   │   ├── klan.html
-│   │   ├── badge.html
-│   │   ├── sertifikat.html
-│   │   ├── notifikasi.html
-│   │   └── settings.html
-│   ├── belajar/                 # Template pembelajaran
-│   │   ├── python.html
-│   │   ├── math.html
-│   │   ├── modul.html
-│   │   ├── quiz_submit.html
-│   │   └── sertifikat.html
-│   ├── klan/
-│   │   ├── klan.html
-│   │   ├── view.html
-│   │   └── leaderboard.html
-│   ├── admin/                   # Template admin panel
-│   │   ├── dashboard.html
-│   │   ├── tambah_modul.html
-│   │   ├── tambah_quiz.html
-│   │   └── analytics.html
-│   └── ai/
-│       ├── nova.html
-│       ├── algorhizmi.html
-│
-├── static/                      # Asset statis (CSS, JS, gambar)
-│   ├── css/
-│   │   ├── global.css
-│   │   ├── dashboard.css
-│   │   ├── progress.css
-│   ├── js/
+├── src/                       # source code
+│   ├── assets/                # images, fonts, videos
+│   │   ├── images/
+│   │   ├── fonts/
+│   │   └── videos/
+│   │
+│   ├── components/            # reusable HTML or JS components
+│   │   ├── Header.html
+│   │   ├── Footer.html
+│   │   └── ModuleCard.html
+│   │
+│   ├── data/                  # JSON data or mock data
+│   │   ├── modules.json
+│   │   ├── leaderboard.json
+│   │   └── user_progress.json
+│   │
+│   ├── pages/                 # separate page layouts
+│   │   ├── dashboard/
+│   │   │   ├── Dashboard.html
+│   │   │   ├── Profile.html
+│   │   │   ├── Progress.html
+│   │   │   └── Quests.html
+│   │   │
+│   │   ├── admin/
+│   │   │   ├── Dashboard.html
+│   │   │   ├── AddModule.html
+│   │   │   └── Analytics.html
+│   │   │
+│   │   ├── klan/
+│   │   │   ├── Klan.html
+│   │   │   └── Leaderboard.html
+│   │   │
+│   │   ├── ai/
+│   │   │   ├── Nova.html
+│   │   │   └── Algorhizmi.html
+│   │   │
+│   │   └── gamification/
+│   │       ├── Badges.html
+│   │       └── Leaderboard.html
+│   │
+│   ├── scripts/               # JavaScript logic
+│   │   ├── auth/
+│   │   │   ├── login.js
+│   │   │   └── register.js
 │   │   ├── dashboard.js
-│   │   ├── progress.js
-│   │   ├── badge.js
-│   │   ├── leaderboard.js
-│   │   ├── quest.js
-│   │   ├── guild.js
-│   └── images/
-│       ├── badge_icons/
-│       └── guild_icons/
+│   │   ├── xpTracker.js
+│   │   └── gamification.js
+│   │
+│   └── styles/                # CSS / SCSS
+│       ├── base.css
+│       ├── dashboard.css
+│       ├── auth.css
+│       └── gamification.css
 │
-├── components/                  # Komponen HTML modular
-│   ├── header.html
-│   ├── footer.html
-│   └── modul_card.html
+├── server/                    # (future) backend code if you add Node/Flask
+│   ├── app.js
+│   └── routes/
 │
-├── includes/                    # JS utility functions
-│   ├── config.js
-│   ├── functions.js
-│   └── xp_tracker.js
-│
-├── api/                         # API handler (Flask Blueprint / Django views)
-│   ├── _init_.py
-│   ├── auth.py
-│   ├── dashboard.py
-│   ├── progress.py
-│   ├── badge.py
-│   ├── leaderboard.py
-│   ├── quest.py
-│   └── guild.py
-│
-├── models/                      # Model database (ORM: SQLAlchemy/Django ORM)
-│   ├── _init_.py
-│   ├── user.py
-│   ├── progress.py
-│   ├── badge.py
-│   ├── quest.py
-│   └── guild.py
-│
-├── forms/                       # FlaskForm / Django Forms
-│   └── auth_forms.py
-│
-├── middleware/                  # Middleware Python (auth, logging, dsb)
-│   └── xp_logger.py
-│
-├── services/                    # Logika bisnis non-view (opsional)
-│   └── auth_service.py
-│
-├── data/                        # File data dummy JSON
-│   ├── modul.json
-│   ├── user_progress.json
-│   ├── badge.json
-│   ├── quest.json
-│   ├── klan.json
-│   ├── leaderboard.json
-│   └── users.json
-│
-├── tests/                       # Unit test aplikasi
-│   ├── _init_.py
-│   ├── test_auth.py
-│   ├── test_dashboard.py
-│   ├── test_progress.py
-│   └── test_quest.py
-│
-├── uploads/                     # File upload user/admin
-│
-└── docs/                        # Dokumentasi teknis
-    ├── setup.md
-    ├── python_setup.md
-    ├── database.md
-    └── api_spec.md
+├── package.json               # future npm project
+├── vite.config.js             # (or webpack.config.js)
+├── README.md
+└── .gitignore
