@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengenalan JavaScript – Altair Edu</title>
+  <link rel="stylesheet" href="../../assets/css/modul-js/pengenalan.css" />
+  <style>
+    .hidden { display: none; }
+    .progress-btn { margin-top: 1rem; }
+    .output-section pre { background: #111; color: #0f0; padding: 0.75rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Tombol toggle sidebar -->
+  <button class="toggle-sidebar-btn" onclick="toggleSidebar()">☰</button>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="logo">Altair Edu</div>
+    <ul class="module-list">
+      <li class="active"><a href="pengenalan-javascript.html"><span class="step-num">1</span>Pengenalan</a></li>
+      <li><a href="sintaks-dasar.html"><span class="step-num">2</span>Sintaks Dasar</a></li>
+      <li><a href="operator.html"><span class="step-num">3</span>Operator</a></li>
+      <li><a href="mini-project.html"><span class="step-icon">🏁</span>Mini Project</a></li>
+    </ul>
+  </div>
+
+  <!-- Konten utama -->
+  <div class="main-content">
+    <h1>Pengenalan JavaScript</h1>
+    <p>JavaScript adalah bahasa pemrograman yang digunakan untuk membuat website menjadi interaktif. Bahasa ini dapat digunakan di browser dan juga server (Node.js).</p>
+
+    <h2>Contoh Sederhana</h2>
+    <p>Contoh perintah paling dasar adalah mencetak teks ke konsol menggunakan <code>console.log()</code>.</p>
+    <p>Silakan coba menulis dan menjalankan kode JavaScript di bawah ini:</p>
+
+    <div class="editor-container">
+      <div id="editor" style="height: 200px;"></div>
+      <div class="output-section">
+        <button onclick="runCode()">▶ Jalankan Kode</button>
+        <pre id="consoleOutput">// Output akan muncul di sini</pre>
+      </div>
+    </div>
+
+    <!-- Tombol Selesaikan Bagian -->
+    <div class="progress-btn">
+      <button id="progressBtn" onclick="markProgress('javascript', 'pengenalan-javascript')">
+        ✔️ Tandai Selesai Bagian
+      </button>
+      <span id="progressMsg" style="margin-left: 10px; color: green;"></span>
+    </div>
+  </div>
+
+  <!-- External Scripts -->
+  <script src="https://unpkg.com/monaco-editor@0.38.0/min/vs/loader.js"></script>
+  <script type="module" src="/assets/dist/assets/pengenalan-Cp66noLo.js"></script> 
+
+</body>
+</html>

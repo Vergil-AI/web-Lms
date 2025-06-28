@@ -1,0 +1,19 @@
+{
+  "username": "user",
+  "level": 47,
+  "xp": 128400,
+  "xp_next": 150000,
+  "streak": 12,
+  "current_modules": [
+    {
+      "title": "Frontend Design",
+      "progress": 60,
+      "link": "/modul/frontend"
+    },
+    {
+      "title": "Data Analysis",
+      "progress": 25,
+      "link": "/modul/data-analysis"
+    }
+  ]
+}

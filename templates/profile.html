@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profil Altair Edu</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile/profile.css') }}">
+</head>
+<body>
+  <div id="app">
+    <section class="profile-section">
+      <aside class="sidebar">
+        <button class="toggle-sidebar" onclick="toggleSidebar()">⏴</button>
+        <div class="logo">ALTAIR EDU</div>
+        <img src="../assets/images/female-humanoid.jpg" alt="Avatar User" class="avatar" />
+        <h2 id="username">NamaUser123</h2>
+        <p id="role">Siswa</p>
+        <div class="level">Level 12</div>
+        <div class="xp-bar">
+          <div class="xp-fill" style="width: 70%;"></div>
+        </div>
+        <a href="/" class="back-home">🏠 Beranda</a>
+        <nav class="side-nav">
+          <button onclick="showSection('overview')">Overview</button>
+          <button onclick="showSection('progress')">Misi</button>
+          <button onclick="showSection('badges')">Badges</button>
+          <button onclick="showSection('guild')">Guild</button>
+          <button onclick="showSection('ai-mentor')">AI Mentor</button>
+          <button onclick="showSection('certificates')">Sertifikat</button>
+          <button onclick="showSection('achievement')">Achievement</button>
+          <button onclick="showSection('settings')">Pengaturan</button>
+        </nav>
+      </aside>
+
+      <main class="content-area">
+        <div id="overview" class="content-panel">
+          <h3>Overview</h3>
+          <p>Selamat datang kembali! Lanjutkan perjalanan belajarmu.</p>
+          <ul class="quick-stats">
+            <li>Kursus Aktif: <strong>5</strong></li>
+            <li>XP Terkumpul: <strong>9200</strong></li>
+            <li>Lencana Diraih: <strong>12</strong></li>
+          </ul>
+
+          <div class="overview-grid">
+            <section class="statistik">
+              <h4>Statistik</h4>
+              <ul>
+                <li>Total Jam Belajar: <strong>120</strong> jam</li>
+                <li>Quiz Diselesaikan: <strong>45</strong></li>
+                <li>Modul Terbuka: <strong>85%</strong></li>
+              </ul>
+            </section>
+
+            <section class="skill-progress">
+              <h4>Skill Progress</h4>
+              <ul>
+                <li>Python: <progress value="80" max="100"></progress> 80%</li>
+                <li>JavaScript: <progress value="65" max="100"></progress> 65%</li>
+                <li>SQL: <progress value="50" max="100"></progress> 50%</li>
+              </ul>
+            </section>
+
+            <section class="abilities">
+              <h4>Abilities</h4>
+              <ul>
+                <li>Debug Instinct</li>
+                <li>Code Optimization</li>
+                <li>Logical Reasoning</li>
+              </ul>
+            </section>
+
+            <section class="character-detail">
+              <h4>Detail Karakter</h4>
+              <ul>
+                <li>Karakter: <strong>Algorhizmi</strong></li>
+                <li>Role: <strong>Strategist</strong></li>
+                <li>Favorit: <strong>Backend Engineering</strong></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+
+        <div id="progress" class="content-panel hidden">
+          <h3>Progres Belajar</h3>
+          <ul class="course-progress">
+            <li><span>Python Dasar</span><span>80%</span></li>
+            <li><span>HTML/CSS</span><span>65%</span></li>
+            <li><span>JavaScript</span><span>40%</span></li>
+          </ul>
+        </div>
+
+        <div id="badges" class="content-panel hidden">
+          <h3>Badges</h3>
+          <div class="badge-grid">
+            <div class="badge unlocked">Pemula Berani</div>
+            <div class="badge unlocked">Pemecah Bug</div>
+            <div class="badge locked">Master Kode</div>
+          </div>
+        </div>
+
+        <div id="guild" class="content-panel hidden">
+          <h3>Guild</h3>
+          <p>Anggota Guild: <strong>Code Knights</strong></p>
+          <button>Masuk Forum Guild</button>
+        </div>
+
+        <div id="certificates" class="content-panel hidden">
+          <h3>Sertifikat</h3>
+          <ul class="cert-list">
+            <li>Python Dasar - <a href="#">Unduh</a></li>
+            <li>HTML/CSS - <a href="#">Unduh</a></li>
+          </ul>
+        </div>
+
+        <div id="achievement" class="content-panel hidden">
+          <h3>Pencapaian</h3>
+          <ul class="quick-stats">
+            <li>Tantangan Harian Selesai: <strong>8</strong></li>
+            <li>Streak Belajar Terpanjang: <strong>21 hari</strong></li>
+            <li>Proyek Komunitas: <strong>3 kontribusi</strong></li>
+          </ul>
+        </div>
+
+        <div id="settings" class="content-panel hidden">
+          <h3>Pengaturan Akun</h3>
+          <form class="settings-form">
+            <label>Email: <input type="email" value="user@email.com" /></label>
+            <label>Kata Sandi: <input type="password" placeholder="*******" /></label>
+            <button type="submit">Simpan Perubahan</button>
+          </form>
+        </div>
+      </main>
+    </section>
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.content-panel').forEach(panel => {
+        panel.classList.add('hidden');
+      });
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('collapsed');
+    }
+  </script>
+</body>
+</html>

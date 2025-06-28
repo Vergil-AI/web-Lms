@@ -1,0 +1,359 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* =============== GLOBAL STYLES =============== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0B0F2A;
+  color: #00f0ff;
+  background-image: url('../images/js1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* =============== HEADER & NAVBAR =============== */
+header {
+  padding: 20px 40px;
+  background-color: #0B0F2A;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1F254A;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  color: #00f0ff;
+}
+
+nav ul.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul.menu > li {
+  position: relative;
+}
+
+nav a {
+  color: #00f0ff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 15px;
+  display: block;
+}
+
+/* Dropdown-menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1A1E3A;
+  border-radius: 8px;
+  padding: 10px 0;
+  min-width: 180px;
+  display: none;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  padding: 10px 20px;
+  color: #B5B8DE;
+  font-weight: 400;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #2B2F4A;
+  color: #fff;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
+
+/* =============== TOGGLE MENU (Responsive) =============== */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: #00f0ff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* =============== HERO SECTION =============== */
+.hero {
+  text-align: center;
+  padding: 300px 50px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 50px;
+}
+
+/* =============== START BUTTON & MENU PANEL =============== */
+.start-button-container {
+  text-align: center;
+  margin: 100px 0 80px;
+}
+
+.start-btn {
+  padding: 12px 28px;
+  background-color: #5E3BEE;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.start-btn:hover {
+  background-color: #7B5EFF;
+  box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+
+.menu-panel {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1A1E3A;
+  padding: 20px;
+  border-radius: 12px;
+  width: 250px;
+  display: none;
+  z-index: 1000;
+  border: 2px solid transparent;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+  background: linear-gradient(#1A1E3A, #1A1E3A) padding-box,
+              linear-gradient(45deg, #00f0ff, #ff00ff, #00f0ff) border-box;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+.menu-panel.active {
+  display: block;
+}
+
+.menu-panel h2 {
+  font-size: 1.5em;
+  color: #00f0ff;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.menu-panel ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-panel li {
+  margin: 10px 0;
+}
+
+.menu-panel a {
+  color: #B5B8DE;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px;
+  display: block;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.menu-panel a:hover {
+  color: #00f0ff;
+  background-color: #2B2F4A;
+  border-radius: 8px;
+}
+
+/* =============== ANIMATED BORDER (RAINBOW EFFECT) =============== */
+.animated-border {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 42px;
+  color: #E5FFFF;
+  z-index: 1;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  border-radius: 12px;
+  background: linear-gradient(
+    270deg,
+    red,
+    orange,
+    yellow,
+    green,
+    cyan,
+    blue,
+    violet,
+    red
+  );
+  background-size: 600% 600%;
+  animation: rainbowBorder 8s linear infinite;
+}
+
+@keyframes rainbowBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes neonGlow {
+  0%   { box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff; }
+  50%  { box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+  100% { box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff; }
+}
+
+/* =============== FOOTER =============== */
+footer {
+  text-align: center;
+  padding: 30px 10px;
+  border-top: 1px solid #1F254A;
+  font-size: 14px;
+  color: #888AAA;
+}
+
+/* =============== RESPONSIVE DESIGN =============== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  nav ul.menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  nav ul.menu.active {
+    display: flex;
+  }
+
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .start-button-container {
+    margin: 60px 0 40px;
+  }
+
+  .start-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .menu-panel {
+    width: 90%;
+    bottom: 60px;
+  }
+
+  .animated-border {
+    font-size: 28px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .menu-panel h2 {
+    font-size: 1.2em;
+  }
+
+  .start-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 998;
+  }
+
+    .login-button {
+    width: 100%;       
+    padding: 14px 0;    
+    font-size: 18px;    
+    border-radius: 6px; 
+    box-sizing: border-box;
+  }
+
+  nav ul.menu {
+    display: none;
+    flex-direction: column;
+    background-color: #0d026c;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100vw;
+    padding: 20px;
+    z-index: 998;
+    box-sizing: border-box;
+  }
+
+  nav ul.menu.active {
+    display: flex;
+  }
+
+  nav ul.menu li {
+    width: 100%;
+  }
+
+  nav ul.menu li a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  header {
+    position: relative;
+  }
+}

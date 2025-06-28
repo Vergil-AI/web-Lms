@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Altair Edu Development Flowchart</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+
+  /* Root styling */
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    color: #374151; /* Dark gray text */
+    margin: 0;
+    padding: 3rem 1rem;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #111827;
+  }
+
+  /* Flowchart wrapper vertical stack */
+  .flowchart {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  /* Phase card */
+  .phase {
+    background: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.05);
+    padding: 1.5rem 2rem;
+  }
+
+  .phase-header {
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    border-left: 4px solid #2563eb; /* Blue accent */
+    padding-left: 0.75rem;
+  }
+
+  /* Sub-list inside each phase */
+  .sub-list {
+    list-style: none;
+    margin: 0;
+    padding-left: 1rem;
+    color: #6b7280;
+  }
+  .sub-list > li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  /* Custom bullet */
+  .sub-list > li::before {
+    content: "•";
+    color: #3b82f6; /* lighter blue */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  /* Nested sub-list within sub-list */
+  .sub-list ul {
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Connectors */
+  .connector {
+    position: relative;
+    margin: 1.5rem auto 0 auto;
+    width: 2px;
+    height: 36px;
+    background: #d1d5db; /* gray line */
+    border-radius: 1px;
+    box-shadow: 0 0 6px 0px #93c5fdaa inset;
+  }
+  
+  /* Arrowhead */
+  .connector::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #d1d5db;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 2.25rem;
+    }
+    .phase {
+      padding: 1rem 1.25rem;
+    }
+    .phase-header {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Altair Edu Development Workflow Flowchart">
+    <h1>Altair Edu Development Workflow</h1>
+
+    <div class="flowchart">
+      
+      <section class="phase" aria-labelledby="phase1-header">
+        <h2 id="phase1-header" class="phase-header">Phase 1: Project Setup and Core Functionality</h2>
+        <ul class="sub-list">
+          <li>Environment Setup
+            <ul>
+              <li>Virtual environment &amp; dependencies installation</li>
+              <li>Configure environment variables (.env)</li>
+            </ul>
+          </li>
+          <li>Database Setup
+            <ul>
+              <li>Configure database and ORM models</li>
+              <li>Create &amp; apply database migrations</li>
+            </ul>
+          </li>
+          <li>Authentication
+            <ul>
+              <li>Login, registration, logout implementation</li>
+              <li>Authentication forms and templates</li>
+              <li>Middleware for route protection</li>
+            </ul>
+          </li>
+          <li>Basic Layout and Navigation
+            <ul>
+              <li>Base template with header, footer, and navigation</li>
+              <li>Landing, About, Contact pages</li>
+              <li>Reusable header &amp; footer components</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="connector" aria-hidden="true"></div>
+      </section>
+
+      <section class="phase" aria-labelledby="phase2-header">
+        <h2 id="phase2-header" class="phase-header">Phase 2: User Dashboard and Core Features</h2>
+        <ul class="sub-list">
+          <li>Dashboard Structure &amp; Routing</li>
+          <li>Profile Management
+            <ul>
+              <li>View and edit profile information</li>
+            </ul>
+          </li>
+          <li>Progress Tracking
+            <ul>
+              <li>Progress templates, API, and CSS/JS</li>
+              <li>XP tracker middleware</li>
+            </ul>
+          </li>
+          <li>Leaderboard
+            <ul>
+              <li>Leaderboard data API and templates</li>
+            </ul>
+          </li>
+          <li>Quests and Badges
+            <ul>
+              <li>Quest and badge templates</li>
+              <li>API endpoints and client scripts</li>
+              <li>Badge icons</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="connector" aria-hidden="true"></div>
+      </section>
+
+      <section class="phase" aria-labelledby="phase3-header">
+        <h2 id="phase3-header" class="phase-header">Phase 3: Learning Modules and Gamification</h2>
+        <ul class="sub-list">
+          <li>Learning Module Structure &amp; Routing
+            <ul>
+              <li>Module templates and content loading</li>
+              <li>Module preview cards component</li>
+            </ul>
+          </li>
+          <li>Quiz Functionality
+            <ul>
+              <li>Quiz submission handling &amp; scoring</li>
+            </ul>
+          </li>
+          <li>Gamification Elements
+            <ul>
+              <li>XP and badge awarding system</li>
+              <li>XP tracker JavaScript utility</li>
+            </ul>
+          </li>
+          <li>Klan (Guild) System
+            <ul>
+              <li>Klan templates and icons</li>
+              <li>API endpoints and client scripts</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="connector" aria-hidden="true"></div>
+      </section>
+
+      <section class="phase" aria-labelledby="phase4-header">
+        <h2 id="phase4-header" class="phase-header">Phase 4: Admin Panel and Advanced Features</h2>
+        <ul class="sub-list">
+          <li>Admin Panel
+            <ul>
+              <li>Admin dashboard and module/quiz management</li>
+              <li>Analytics and admin authentication</li>
+            </ul>
+          </li>
+          <li>AI Features
+            <ul>
+              <li>Nova and Algorhizmi AI integration</li>
+            </ul>
+          </li>
+          <li>Notifications and Settings
+            <ul>
+              <li>Notification templates and APIs</li>
+              <li>User settings management</li>
+            </ul>
+          </li>
+          <li>Certificates
+            <ul>
+              <li>Certificate generation and templates</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="connector" aria-hidden="true"></div>
+      </section>
+
+      <section class="phase" aria-labelledby="phase5-header">
+        <h2 id="phase5-header" class="phase-header">Phase 5: Testing, Documentation, and Deployment</h2>
+        <ul class="sub-list">
+          <li>Testing
+            <ul>
+              <li>Unit tests coverage &amp; regular runs</li>
+            </ul>
+          </li>
+          <li>Documentation
+            <ul>
+              <li>Project README &amp; detailed docs</li>
+            </ul>
+          </li>
+          <li>Deployment
+            <ul>
+              <li>Choose platform and deploy application</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</body>
+</html>
+

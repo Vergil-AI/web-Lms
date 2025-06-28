@@ -1,0 +1,110 @@
+<h2 class="section-title">Dasbor Utama</h2>
+<div class="cards-grid">
+
+  <!-- Misi Aktif -->
+  <div class="card clickable" id="cardQuest" role="button" tabindex="0">
+    <div class="card-header">
+      <div class="card-icon"><img src="{{ url_for('static', filename='images/icon-small/rocket.png') }}" alt="Modul Icon" /></div>
+      <div class="card-title">Misi Aktif</div>
+    </div>
+    <div class="card-description">
+      {{ user.active_quests }} misi tersisa hari ini.<br>
+      Segera selesaikan untuk reward XP & badge!
+    </div>
+  </div>
+
+  <!-- Progres Belajar -->
+  <div class="card clickable" id="cardProgress" role="button" tabindex="0">
+    <div class="card-header">
+      <div class="card-icon"><img src="{{ url_for('static', filename='images/icon-small/bar-chart.png') }}" alt="Modul Icon" /></div>
+      <div class="card-title">Progres Belajar</div>
+    </div>
+    <div class="card-description">
+      XP: <strong>{{ user.xp | format }}</strong><br>
+      Level: <strong>{{ user.level }}</strong><br>
+      Streak Harian: <strong>{{ user.streak }} Hari</strong>
+    </div>
+  </div>
+
+    <!-- AI Pendamping -->
+  <div class="card clickable" id="cardAI" role="button" tabindex="0">
+    <div class="card-header">
+      <div class="card-icon"><img src="{{ url_for('static', filename='images/icon-small/robo.png') }}" alt="Modul Icon" /></div>
+      <div class="card-title">AI Pendamping</div>
+    </div>
+    <div class="card-description">
+      Nova dan Algorhizmi siap bantu kapan pun kamu butuh bimbingan.
+    </div>
+  </div>
+
+  <!-- Modul Aktif -->
+  <div class="card clickable" id="cardModul" role="button" tabindex="0">
+    <div class="card-header">
+      <div class="card-icon"><img src="{{ url_for('static', filename='images/icon-small/module-icon.png') }}" alt="Modul Icon" /></div>
+      <div class="card-title">Modul Aktif</div>
+    </div>
+    <div class="card-description">
+      {% if user.current_modules %}
+        {% for modul in user.current_modules %}
+          <div class="modul-item">
+            <div class="modul-header">
+              <img class="modul-icon-img" src="{{ modul.icon }}" alt="{{ modul.title }} Icon">
+              <strong>{{ modul.title }}</strong>
+            </div>
+            <div class="modul-progress">
+              <div class="progress-bar">
+                <div class="filled" data-progress="{{ modul.progress | default(0) }}"></div>
+              </div>
+              <span>{{ modul.progress }}%</span>
+            </div>
+            <div class="modul-info">
+              Terakhir: {{ modul.last }}<br>
+              <a href="{{ modul.link }}" class="link-modul">Lanjutkan Belajar →</a>
+            </div>
+          </div>
+        {% endfor %}
+        <br><a href="/modul" class="link-modul">Lihat Semua Modul →</a>
+      {% else %}
+        Belum ada modul aktif.<br>
+        <a href="/modul" class="link-modul">Mulai belajar sekarang!</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Aktivitas Terakhir -->
+    <div class="card clickable" id="cardLastModule" role="button" tabindex="0">
+      <div class="card-header">
+        <div class="card-icon"><img src="{{ url_for('static', filename='images/icon-small/module-recently.png') }}" alt="Modul Icon" /></div>
+        <div class="card-title">Aktivitas Terakhir</div>
+      </div>
+      <div class="card-description">
+        Kamu terakhir mempelajari <strong>{{ user.last_module }}</strong>.<br>
+        <em>Siap lanjut?</em>
+      </div>
+    </div>
+
+</div>
+
+<!-- 🔽 Popup Modal Box -->
+<div id="dashboardModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" id="modalClose">&times;</span>
+    <div id="modalBody">
+      <!-- Konten dinamis akan ditampilkan di sini -->
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.filled').forEach(el => {
+    const raw = el.dataset.progress;
+    const value = parseInt(raw);
+    if (!isNaN(value) && value >= 0 && value <= 100) {
+      el.style.width = value + '%';
+    } else {
+      el.style.width = '0%';
+      console.warn('Invalid progress value:', raw);
+    }
+  });
+</script>
+

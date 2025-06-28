@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belajar Javascript – Altair Edu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/javascript.css') }}">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header>
+
+    <!-- Tambahkan di dalam <header> sebelum nav -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+      ☰
+    </button>
+
+    <div class="logo"><strong>Altair Edu</strong></div>
+    <nav>
+      <ul class="menu">
+        <li><a href="/">Beranda</a></li>
+        <li><a href="#why">Tentang</a></li>
+        <li class="dropdown">
+          <a href="#modul">Belajar</a>
+          <ul class="dropdown-menu">
+            <li><a href="/belajar/math">Matematika</a></li>
+          </ul>
+        </li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <section class="hero">
+    <h1 class="animated-border">Javascript</h1>
+  </section>
+
+  <!-- Tombol Mulai dan Panel Menu -->
+  <div class="start-button-container">
+    <button class="start-btn">MENU</button>
+    <div class="menu-panel" id="menuPanel">
+      <h2>Materi Javascript</h2>
+      <ul>
+        <li><a href="/belajar/javascript_modul/pengenalan-javascript">Pengenalan Javascript</a></li>
+        <li><a href="materi/operator.html">Operator dan Ekspresi</a></li>
+        <li><a href="materi/flowcontrol.html">Flow Control</a></li>
+        <li><a href="materi/fungsi-modul.html">Fungsi & Modul</a></li>
+        <li><a href="materi/array-object.html">Array & Object</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Altair Edu – Didorong oleh Altair Labs
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('nav ul.menu');
+      menu.classList.toggle('active');
+    }
+
+    // Hubungkan tombol dengan fungsi toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    menuToggle.addEventListener('click', toggleMenu);
+  </script>
+
+  <script>
+    // Toggle Menu Panel
+    const startBtn = document.querySelector('.start-btn');
+    const menuPanel = document.getElementById('menuPanel');
+
+    // Toggle panel saat tombol diklik
+    startBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      menuPanel.classList.toggle('active');
+    });
+
+    // Sembunyikan panel saat klik di luar
+    document.addEventListener('click', (e) => {
+      if (!menuPanel.contains(e.target) && !startBtn.contains(e.target)) {
+        menuPanel.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+</html>

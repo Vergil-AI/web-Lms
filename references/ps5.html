@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS5 Futuristic Menu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Animated background with neon lightning */
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .lightning {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(180deg, #00d4ff 0%, transparent 100%);
+            opacity: 0;
+            animation: lightning 3s infinite;
+        }
+        
+        .lightning:nth-child(1) {
+            left: 20%;
+            top: 10%;
+            animation-delay: 0s;
+        }
+        
+        .lightning:nth-child(2) {
+            left: 60%;
+            top: 30%;
+            animation-delay: 1s;
+        }
+        
+        .lightning:nth-child(3) {
+            left: 80%;
+            top: 60%;
+            animation-delay: 2s;
+        }
+        
+        @keyframes lightning {
+            0%, 90%, 100% { opacity: 0; }
+            5%, 10% { opacity: 1; box-shadow: 0 0 20px #00d4ff; }
+        }
+        
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Top UI Bar */
+        .top-ui {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+        
+        .ui-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .ui-icon:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .ui-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #00d4ff;
+        }
+        
+        /* Module Icon (trigger) */
+        .module-icon {
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .module-icon:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+        }
+        
+        .module-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+        
+        /* Popup Menu */
+        .popup-menu {
+            position: absolute;
+            top: 50%;
+            left: 150px;
+            transform: translateY(-50%);
+            width: calc(100vw - 200px);
+            height: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            pointer-events: none;
+        }
+        
+        .popup-menu.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+        }
+        
+        .menu-container {
+            display: flex;
+            gap: 20px;
+            height: 100%;
+            overflow-x: auto;
+            padding: 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .menu-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Menu Cards */
+        .menu-card {
+            min-width: 280px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+            position: relative;
+        }
+        
+        .menu-card:nth-child(1) { animation-delay: 0.1s; }
+        .menu-card:nth-child(2) { animation-delay: 0.2s; }
+        .menu-card:nth-child(3) { animation-delay: 0.3s; }
+        .menu-card:nth-child(4) { animation-delay: 0.4s; }
+        .menu-card:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes slideIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+        
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 212, 255, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .menu-card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-thumbnail {
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-thumbnail::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+        }
+        
+        .card-content {
+            padding: 20px;
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+        }
+        
+        /* Different gradient themes for cards */
+        .card-gaming { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-media { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .card-social { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .card-tools { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .card-settings { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        
+        /* Glow effects */
+        .glow-effect {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff, #00d4ff);
+            border-radius: 22px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+            animation: glow-rotate 3s linear infinite;
+        }
+        
+        .menu-card:hover .glow-effect {
+            opacity: 0.6;
+        }
+        
+        @keyframes glow-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Navigation arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 5;
+        }
+        
+        .nav-arrow:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+        
+        .nav-arrow.left {
+            left: 10px;
+        }
+        
+        .nav-arrow.right {
+            right: 10px;
+        }
+        
+        .nav-arrow svg {
+            width: 24px;
+            height: 24px;
+            fill: #00d4ff;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .popup-menu {
+                left: 100px;
+                width: calc(100vw - 120px);
+            }
+            
+            .menu-card {
+                min-width: 220px;
+            }
+            
+            .module-icon {
+                width: 60px;
+                height: 60px;
+                left: 20px;
+            }
+            
+            .module-icon svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-effects">
+        <div class="lightning"></div>
+        <div class="lightning"></div>
+        <div class="lightning"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Top UI Icons -->
+        <div class="top-ui">
+            <div class="ui-icon" title="Settings">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                </svg>
+            </div>
+            
+            <div class="ui-icon" title="Navigation">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+                </svg>
+            </div>
+            
+            <div class="ui-icon" title="User Profile">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Module Icon (Trigger) -->
+        <div class="module-icon" onclick="toggleMenu()">
+            <svg viewBox="0 0 24 24">
+                <path d="M4,6H20V8H4V6M4,11H20V13H4V11M4,16H20V18H4V16Z"/>
+            </svg>
+        </div>
+        
+        <!-- Popup Menu -->
+        <div class="popup-menu" id="popupMenu">
+            <div class="nav-arrow left" onclick="scrollMenu(-1)">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/>
+                </svg>
+            </div>
+            
+            <div class="menu-container" id="menuContainer">
+                <div class="menu-card">
+                    <div class="glow-effect"></div>
+                    <div class="card-thumbnail card-gaming"></div>
+                    <div class="card-content">
+                        <div class="card-title">GAMING HUB</div>
+                        <div class="card-subtitle">Latest games and achievements</div>
+                    </div>
+                </div>
+                
+                <div class="menu-card">
+                    <div class="glow-effect"></div>
+                    <div class="card-thumbnail card-media"></div>
+                    <div class="card-content">
+                        <div class="card-title">MEDIA CENTER</div>
+                        <div class="card-subtitle">Movies, music, and streaming</div>
+                    </div>
+                </div>
+                
+                <div class="menu-card">
+                    <div class="glow-effect"></div>
+                    <div class="card-thumbnail card-social"></div>
+                    <div class="card-content">
+                        <div class="card-title">SOCIAL NETWORK</div>
+                        <div class="card-subtitle">Friends and communities</div>
+                    </div>
+                </div>
+                
+                <div class="menu-card">
+                    <div class="glow-effect"></div>
+                    <div class="card-thumbnail card-tools"></div>
+                    <div class="card-content">
+                        <div class="card-title">PRODUCTIVITY</div>
+                        <div class="card-subtitle">Tools and applications</div>
+                    </div>
+                </div>
+                
+                <div class="menu-card">
+                    <div class="glow-effect"></div>
+                    <div class="card-thumbnail card-settings"></div>
+                    <div class="card-content">
+                        <div class="card-title">SYSTEM CONFIG</div>
+                        <div class="card-subtitle">Settings and preferences</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-arrow right" onclick="scrollMenu(1)">
+                <svg viewBox="0 0 24 24">
+                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let menuOpen = false;
+        
+        function toggleMenu() {
+            const menu = document.getElementById('popupMenu');
+            menuOpen = !menuOpen;
+            
+            if (menuOpen) {
+                menu.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+            }
+        }
+        
+        function scrollMenu(direction) {
+            const container = document.getElementById('menuContainer');
+            const scrollAmount = 300;
+            container.scrollLeft += direction * scrollAmount;
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('popupMenu');
+            const moduleIcon = document.querySelector('.module-icon');
+            
+            if (menuOpen && !menu.contains(event.target) && !moduleIcon.contains(event.target)) {
+                toggleMenu();
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (menuOpen) {
+                if (event.key === 'Escape') {
+                    toggleMenu();
+                } else if (event.key === 'ArrowLeft') {
+                    scrollMenu(-1);
+                } else if (event.key === 'ArrowRight') {
+                    scrollMenu(1);
+                }
+            }
+        });
+        
+        // Add click handlers for menu cards
+        document.querySelectorAll('.menu-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.card-title').textContent;
+                console.log(`Selected: ${title}`);
+                // Add your navigation logic here
+            });
+        });
+        
+        // Smooth scrolling for menu container
+        document.getElementById('menuContainer').addEventListener('wheel', function(e) {
+            e.preventDefault();
+            this.scrollLeft += e.deltaY;
+        });
+    </script>
+</body>
+</html>

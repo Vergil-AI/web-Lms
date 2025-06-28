@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArkanaX – Break Your Limit!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+  <style>
+    .hidden { display: none; }
+    .subtitle { font-size: 14px; color: #bbb; margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <div class="particles"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="dashboard">
+    <header class="header">
+      <div class="user-info">
+        <div class="avatar">CX</div>
+        <div>
+          <div class="welcome-text">ArkanaX</div>
+          <div class="subtitle">Ready to hack the matrix of knowledge?</div>
+        </div>
+      </div>
+      <div class="level-badge">Level 47 | User</div>
+    </header>
+
+    <nav class="sidebar">
+      <div class="user-nickname">Welcome Back, User</div>
+
+      <div class="nav-item active" data-target="profil">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/profil-icon.png') }}" alt="Profil"></div>
+        <div>Profil</div>
+      </div>
+
+      <div class="nav-item" data-target="dashboard">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/dashboard-icon.png') }}" alt="Dashboard"></div>
+        <div>Dashboard</div>
+      </div>
+
+      <div class="nav-item" data-target="misi">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/challenge.png') }}" alt="Challenge"></div>
+        <div>Challenge</div>
+      </div>
+
+      <div class="nav-item" data-target="guild">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/clans.png') }}" alt="Guild"></div>
+        <div>Guild</div>
+      </div>
+
+      <div class="nav-item" data-target="aktivitas">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/aktivitas.png') }}" alt="Aktivitas"></div>
+        <div>Aktivitas</div>
+      </div>
+
+      <div class="nav-item" data-target="leaderboard">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/leaderboard.png') }}" alt="Leaderboard"></div>
+        <div>Leaderboard</div>
+      </div>
+
+      <div class="nav-item" data-target="shop">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/shop.png') }}" alt="Shop"></div>
+        <div>Shop</div>
+      </div>
+
+      <div class="nav-item" data-target="achievements">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/trophy.png') }}" alt="Achievements"></div>
+        <div>Achievements</div>
+      </div>
+
+      <div class="nav-item" data-target="ai-assistant">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/ai-assistant.png') }}" alt="AI Assistant"></div>
+        <div>AI Assistant</div>
+      </div>
+
+      <div class="nav-item" data-target="notifikasi">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/notification.png') }}" alt="Notifikasi"></div>
+        <div>Notifikasi</div>
+      </div>
+
+      <div class="nav-item" data-target="pengaturan">
+        <div class="nav-icon"><img src="{{ url_for('static', filename='images/settings.png') }}" alt="Pengaturan"></div>
+        <div>Pengaturan</div>
+      </div>
+    </nav>
+
+
+    <main class="main-content">
+
+      <!-- Section Profil -->
+      <section id="profil" class="page-section">
+        <h2 class="section-title">Profil Pengguna</h2>
+        <div class="profile-container">
+          <div class="profile-left">
+            <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="Avatar" class="profile-avatar">
+            <div class="profile-name">CyberX</div>
+            <div class="profile-guild">NeoSynth Guild</div>
+            <div class="profile-level">Level 47</div>
+          </div>
+          <div class="profile-right">
+            <div class="profile-stat">
+              <label>Total XP</label>
+              <div class="progress-bar"><div class="filled" style="width:65%"></div></div>
+              <span class="stat-value">128,400 XP</span>
+            </div>
+            <div class="profile-stat"><label>Misi Diselesaikan</label><span class="stat-value">38</span></div>
+            <div class="profile-stat"><label>Rata-rata Skor Quiz</label><span class="stat-value">87%</span></div>
+            <div class="profile-stat"><label>Streak Harian</label><span class="stat-value">12 Hari</span></div>
+            <div class="profile-achievements">
+              <span class="badge">🏅 Streak</span>
+              <span class="badge">🔥 Top 1</span>
+              <span class="badge">🎯 AI Master</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Misi -->
+      <section id="misi" class="page-section hidden">
+        <h2 class="section-title">Misi Hari Ini</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-header"><div class="card-icon">🔥</div><div class="card-title">Selesaikan 3 Quiz</div></div>
+            <div class="card-description">Uji kemampuanmu hari ini dengan menyelesaikan 3 quiz dari modul apapun.<br><strong>Reward:</strong> 30 XP</div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-icon">🧮</div><div class="card-title">Belajar Matematika</div></div>
+            <div class="card-description">Selesaikan 1 modul dalam kategori Matematika Visual.<br><strong>Reward:</strong> 50 XP + Badge “Math Explorer”</div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-icon">🚀</div><div class="card-title">Kolaborasi Guild</div></div>
+            <div class="card-description">Kirim kontribusi pada misi mingguan Guild NeoSynth.<br><strong>Reward:</strong> 75 XP + 100 GP</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Dashboard -->
+      <section id="dashboard" class="page-section hidden">
+        {% include "dashboard_user/dashboard_section.html" %}
+      </section>
+
+      <!-- Section lainnya -->
+      <section id="guild" class="page-section hidden">
+        <h2 class="section-title">Guild – NeoSynth</h2>
+        <p>Kamu tergabung dalam Guild <strong>NeoSynth</strong>, komunitas elite pembelajar futuristik...</p>
+        <div class="cards-grid">
+          <div class="card"><div class="card-header"><div class="card-icon">🚩</div><div class="card-title">Misi Mingguan</div></div><div class="card-description">Target: 1.000 GP | Saat ini: <strong>720 GP</strong><br>Reward: Chest Langka + 150 XP</div></div>
+          <div class="card"><div class="card-header"><div class="card-icon">🎙</div><div class="card-title">Forum Diskusi</div></div><div class="card-description">12 diskusi aktif minggu ini...</div></div>
+          <div class="card"><div class="card-header"><div class="card-icon">🧬</div><div class="card-title">Anggota</div></div><div class="card-description">• CyberX (Leader)<br>• ByteKnight<br>• NeoNova</div></div>
+        </div>
+      </section>
+
+      <section id="aktivitas" class="page-section hidden">
+        <h2 class="section-title">Log Aktivitas</h2>
+        <ul>
+          <li>✔️ Menyelesaikan quiz Python Dasar - 10 XP</li>
+          <li>🏅 Mendapatkan badge "Streak 7 Hari"</li>
+          <li>📘 Mulai modul Quantum Computing</li>
+          <li>🚀 Bergabung dengan Guild NeoSynth</li>
+        </ul>
+      </section>
+
+      <section id="leaderboard" class="page-section hidden">
+        <h2 class="section-title">Leaderboard</h2>
+        <ol>
+          <li>👑 <strong>CyberX</strong> – 128.400 XP</li>
+          <li>🧠 <strong>NeuralQueen</strong> – 117.950 XP</li>
+          <li>⚡ <strong>ByteKnight</strong> – 102.310 XP</li>
+        </ol>
+      </section>
+
+      <section id="shop" class="page-section hidden">
+        <h2 class="section-title">Shop</h2>
+        <div class="cards-grid">
+          <div class="card"><div class="card-header"><div class="card-icon">🎭</div><div class="card-title">Skin: Neon Hacker</div></div><div class="card-description">Tampilan avatarmu jadi neon cyberpunk keren.</div></div>
+          <div class="card"><div class="card-header"><div class="card-icon">💬</div><div class="card-title">Efek Chat: Glitch</div></div><div class="card-description">Percakapan jadi lebih edgy dengan efek glitch.</div></div>
+          <div class="card"><div class="card-header"><div class="card-icon">⚡</div><div class="card-title">XP Booster</div></div><div class="card-description">XP 2x lipat selama 3 hari.</div></div>
+        </div>
+      </section>
+
+      <section id="achievements" class="page-section hidden">
+        <h2 class="section-title">Pencapaianmu</h2>
+        <div class="cards-grid">
+          <div class="card"><div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Target Tercapai</div></div><div class="card-description">Menyelesaikan misi 7 hari berturut-turut<br><strong>Badge:</strong> Relentless Hacker</div></div>
+          <div class="card"><div class="card-header"><div class="card-icon">🥇</div><div class="card-title">Top 1 Leaderboard</div></div><div class="card-description">Posisi #1 selama 5 hari<br><strong>XP Bonus:</strong> +1.000 XP</div></div>
+          <div class="card"><div class="card-header"><div class="card-icon">💡</div><div class="card-title">AI Explorer</div></div><div class="card-description">Berinteraksi > 20x dengan AI<br><strong>Reward:</strong> Tema Eksklusif</div></div>
+        </div>
+      </section>
+
+      <section id="ai-assistant" class="page-section hidden">
+        <h2 class="section-title">AI Assistant</h2>
+        <div class="cards-grid">
+          <div class="card"><div class="card-header"><div class="card-icon">ΛΣ</div><div class="card-title">Nova</div></div><div class="card-description">Nova siap bantu coding, menjawab soal, & memberi tantangan harian.</div></div>
+          <div class="card"><div class="card-header"><div class="card-icon">Φ</div><div class="card-title">Algorhizmi</div></div><div class="card-description">AI matematika. Ahli persamaan & visualisasi konsep kompleks.</div></div>
+          <div class="card"><div class="card-header"><div class="card-icon">🧬</div><div class="card-title">Mode Belajar AI</div></div><div class="card-description">AI mengatur modul sesuai kecepatan belajarmu.<br>Status: <em>Aktif</em></div></div>
+        </div>
+      </section>
+
+      <section id="notifikasi" class="page-section hidden">
+        <h2 class="section-title">Notifikasi</h2>
+        <ul>
+          <li>🎉 Kamu naik ke Level 47! Selamat!</li>
+          <li>📢 Event "Hack the Future" dimulai minggu ini!</li>
+          <li>🔔 Sertifikat baru: Python Fundamental</li>
+        </ul>
+      </section>
+
+      <section id="pengaturan" class="page-section hidden">
+        <h2 class="section-title">Pengaturan Akun</h2>
+        <ul>
+          <li>✏️ Ubah nama pengguna</li>
+          <li>🔒 Ganti kata sandi</li>
+          <li>🎨 Tema tampilan: Cyber / Light / Terminal</li>
+          <li>🔗 Sinkronisasi Google</li>
+          <li>📥 Export data belajar</li>
+          <li>
+            <form action="{{ url_for('logout') }}" method="POST" style="display:inline;">
+              <button type="submit" style="color:red; background:none; border:none; cursor:pointer;">🚪 Keluar akun</button>
+            </form>
+          </li>
+        </ul>
+        <h3>Privasi & Keamanan</h3>
+        <p style="font-size: 14px; color: #aaa;">Data kamu terenkripsi dan bisa dihapus kapan saja.</p>
+      </section>
+
+    </main>
+
+    <!-- Tombol Mulai -->
+    <button class="cta-mulai-fixed" id="ctaMulaiBtn">Mulai</button>
+
+<!-- Popup Modul -->
+  <div id="modulMenu" class="modul-menu">
+    <div class="modul-bg" id="modulBg"></div>
+    <div class="modul-menu-bar">
+      <button id="closeModulMenu" class="close-btn">✖</button>
+      <div class="modul-title">Pilih Modul Pembelajaran</div>
+
+      <div class="modul-scroll-wrapper">
+        <div class="nav-arrow left" onclick="scrollMenu(-1)">
+          <svg viewBox="0 0 24 24">
+            <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+          </svg>
+        </div>
+
+        <div class="modul-scroll-area" id="modulScrollArea">
+          {% for modul in ['html', 'css', 'javascript', 'php', 'python'] %}
+          <a href="/belajar/{{ modul }}" class="modul-card"
+            data-bg="{{ url_for('static', filename='images/' ~ modul ~ '-bg.jpg') }}">
+            <div class="modul-icon">
+              <img src="{{ url_for('static', filename='images/' ~ modul ~ '.png') }}" alt="{{ modul|capitalize }} Icon" />
+            </div>
+            <div class="modul-label">{{ modul|upper }}</div>
+          </a>
+          {% endfor %}
+        </div>
+
+        <div class="nav-arrow right" onclick="scrollMenu(1)">
+          <svg viewBox="0 0 24 24">
+            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- ========== Inject Data dari Backend ke JavaScript ========== -->
+  <script id="user-data" type="application/json">
+    {{ user | tojson | safe }}
+  </script>
+
+  <script>
+    // Parsing JSON dari script
+    const userData = JSON.parse(document.getElementById("user-data").textContent);
+
+    window.userData = {
+      active_quests: (userData.active_quests || []).length,
+      current_modules: userData.current_modules || []
+    };
+  </script>
+
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>

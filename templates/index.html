@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArkanaX – Break Your Limit!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+  <!-- SVG Filter untuk efek gelombang -->
+  <svg style="display:none;">
+    <filter id="wavy" x="0" y="0" width="100%" height="100%">
+      <feTurbulence id="turbulence" baseFrequency="0.02 0.05" numOctaves="2" result="turbulence" seed="2" />
+      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="10" xChannelSelector="R" yChannelSelector="G" />
+      <animate xlink:href="#turbulence" attributeName="baseFrequency" dur="8s" values="0.02 0.05; 0.05 0.02; 0.02 0.05" repeatCount="indefinite" />
+    </filter>
+  </svg>
+
+  <!-- Navbar -->
+  <header>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+    <div class="logo"><strong>ArkanaX</strong></div>
+    <nav>
+      <ul class="menu">
+        <li><a href="/">Beranda</a></li>
+        <li><a href="#why">Tentang</a></li>
+        <li class="dropdown">
+          <a href="#modul">Belajar</a>
+          <ul class="dropdown-menu">
+            <li><a href="/belajar/javascript">Javascript</a></li>
+            <li><a href="/belajar/math">Matematika</a></li>
+          </ul>
+        </li>
+        <li><a href="#aiguru">AI Guru</a></li>
+        <li><a href="#labs">Build</a></li>
+        <li><a href="contact.html">Kontak</a></li>
+        <li><a href="/login" class="login-button">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero section-bg-1">
+    <h1 class="creed-style">STEM <span class="highlight">ODYSSEY</span></h1>
+    <p>Belajar melalui animasi, tantangan interaktif, dan bantuan AI Guru</p>
+    <a href="/register" class="login-button">MULAI BELAJAR</a>
+  </section>
+
+  <section class="why section-bg-2" id="why">
+    <h2>Kenapa Memilih Kami?</h2>
+    <div class="why-cards">
+      <div class="why-card">
+        <img src="{{ url_for('static', filename='images/streamline-color--ai-settings-spark-flat.png') }}" alt="AI membantu belajar" class="why-icon">
+        <h3>Belajar Seru Bareng AI</h3>
+        <p>Dibantu AI yang ramah dan menjelaskan dengan cara menyenangkan</p>
+      </div>
+      <div class="why-card">
+        <img src="{{ url_for('static', filename='images/icon-park--game-ps.png') }}" alt="Permainan edukatif" class="why-icon">
+        <h3>Gamifikasi dengan XP & Badge</h3>
+        <p>Belajar terasa seperti bermain game</p>
+      </div>
+      <div class="why-card">
+        <img src="{{ url_for('static', filename='images/streamline-color--brain-cognitive-flat.png') }}" alt="Pembelajaran visual" class="why-icon">
+        <h3>Visual & Interaktif</h3>
+        <p>Cocok untuk semua gaya belajar, terutama visual learner</p>
+      </div>
+      <div class="why-card">
+        <img src="{{ url_for('static', filename='images/fluent-color--chat-32.png') }}" alt="Komunitas belajar" class="why-icon">
+        <h3>Komunitas Aktif</h3>
+        <p>Belajar bersama dan saling mendukung</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="modules section-bg-3" id="modul">
+    <h2>Modul Pembelajaran</h2>
+    <div class="module-list">
+      {% for modul in ["html", "css", "python", "javascript"] %}
+      <div class="guru-card">
+        <img src="{{ url_for('static', filename='images/' ~ modul ~ '.png') }}" alt="Modul {{ modul | upper }}" class="guru-icon">
+        <h3>{{ modul | upper }}</h3>
+        <p>Belajar dasar {{ modul.upper() }}</p>
+        <div class="guru-description">
+          <strong>{{ modul | capitalize }}:</strong>
+          {% set modul_template = 'deskripsi_modul/' ~ modul ~ '.html' %}
+          {% include modul_template ignore missing %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a href="/belajar/python.html" class="cta-secondary">Lihat Semua Materi</a>
+  </section>
+
+  <section class="ai-guru section-bg-4" id="aiguru">
+    <h2>Kenalan dengan AI Guru</h2>
+    <div class="guru-list">
+      <div class="guru-card">
+        <img src="{{ url_for('static', filename='images/nova-2.png') }}" alt="Nova – AI Coding Guide" class="guru-icon">
+        <h3>Nova – Coding Guide</h3>
+        <p>Coach untuk Pemrograman</p>
+        <div class="guru-description">
+          <strong>Persona:</strong> Nova membimbing logika pemrograman dengan jelas dan efektif.
+        </div>
+      </div>
+      <div class="guru-card">
+        <img src="{{ url_for('static', filename='images/algorhizmi.png') }}" alt="Algorhizmi – AI Math Mentor" class="guru-icon">
+        <h3>Algorhizmi – Math Mentor</h3>
+        <p>Coach Matematika Modern</p>
+        <div class="guru-description">
+          <strong>Persona:</strong> Algorhizmi menjelaskan konsep Matematika dengan visualisasi dan contoh nyata.
+        </div>
+      </div>
+      <div class="guru-card">
+        <img src="{{ url_for('static', filename='images/vektor.png') }}" alt="Vektor – AI Game Dev Coach" class="guru-icon">
+        <h3>Vektor – Game Dev</h3>
+        <p>Coach Game Dev</p>
+        <div class="guru-description">
+          <strong>Persona:</strong> Vektor membimbing dalam membangun game seru dan interaktif.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gamification section-bg-5" id="labs">
+    <h2>Belajar Seru dan Kompetitif!</h2>
+    <p>Dapatkan XP dan Badge setiap kali kamu menyelesaikan modul. Naik level dan tunjukkan kemampuanmu!</p>
+    <button id="menuToggle" class="login-button">LET'S FIND OUT!</button>
+    <div id="menuContent" class="menu-content">
+      <div class="gamification-list">
+        <div class="gamification-card"><h3>XP System</h3><div class="gamification-description">Dapatkan XP untuk setiap aktivitas belajar.</div></div>
+        <div class="gamification-card"><h3>Level & Badge System</h3><div class="gamification-description">Naik level dan kumpulkan badge!</div></div>
+        <div class="gamification-card"><h3>Leaderboard</h3><div class="gamification-description">Bersaing dan naik ke papan atas.</div></div>
+        <div class="gamification-card"><h3>Challenge Quest + Skor</h3><div class="gamification-description">Selesaikan misi untuk skor ekstra.</div></div>
+        <div class="gamification-card"><h3>Klan/Guild System</h3><div class="gamification-description">Belajar bareng dalam tim atau klan.</div></div>
+        <div class="gamification-card"><h3>Progress Tracker</h3><div class="gamification-description">Pantau dan capai target belajar.</div></div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/gamification/gamifikasi.js') }}"></script>
+  </section>
+
+  <section class="final-cta section-bg-6">
+    <h2 class="animated-border2">Yuk mulai belajar dengan cara baru yang seru!</h2>
+    <a href="/register" class="login-button">MULAI SEKARANG</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 ArkanaX – Didorong oleh Altair Labs</p>
+    <p><a href="about.html">Tentang</a> | <a href="contact.html">Kontak</a> | <a href="#">Instagram</a> | <a href="#">TikTok</a></p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const menu = document.querySelector('nav ul.menu');
+      menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

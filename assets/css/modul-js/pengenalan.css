@@ -1,0 +1,171 @@
+body {
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #0B0F2A;
+  color: #00f0ff;
+  display: flex;
+  height: 100vh;
+}
+
+/* Animasi efek air tenang */
+@keyframes calmWave {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 15px 5px rgba(0, 240, 255, 0.2);
+  }
+}
+
+/* Tombol toggle sidebar dengan efek air tenang */
+.toggle-sidebar-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid #00f0ff;
+  color: #00f0ff;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  animation: calmWave 3s ease-in-out infinite;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle-sidebar-btn:hover {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #0B0F2A;
+  padding: 20px;
+  border-right: 1px solid #1F254A;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+/* Logo */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* Modul list */
+.module-list {
+  list-style: none;
+  padding: 0;
+}
+
+.module-list li {
+  padding: 10px 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  color: #B5B8DE;
+}
+
+.module-list li.active {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.step-num,
+.step-icon {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #5EBDFF;
+}
+
+/* Main content */
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.main-content h1 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #00f0ff;
+}
+
+.main-content h2 {
+  font-size: 22px;
+  margin-top: 30px;
+  color: #00f0ff;
+}
+
+.main-content p {
+  color: #B5B8DE;
+  margin-bottom: 16px;
+}
+
+code {
+  background-color: #1F254A;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+/* Editor dan output */
+.editor-container {
+  display: flex;
+  flex-direction: row;
+  height: 400px;
+  margin: 20px 0;
+  gap: 20px;
+}
+
+#editor {
+  width: 65%;
+  height: 100%;
+  border: 1px solid #1F254A;
+  border-radius: 8px;
+}
+
+.output-section {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  background: #1A1E3A;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.output-section button {
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #00f0ff;
+  border: none;
+  color: #0B0F2A;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#consoleOutput {
+  background: #000;
+  color: #00f0ff;
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  border-radius: 5px;
+}

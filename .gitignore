@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+.env
+
+# VS Code settings
+.vscode/
+*.code-workspace
+
+# Environment
+env/
+venv/
+ENV/
+VENV/
+
+# MacOS/Windows/Linux OS junk
+.DS_Store
+Thumbs.db
+
+# Logs & temp files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Uploads or runtime user files
+uploads/
+*.sqlite3
+
+# Node.js frontend cache (optional if you use npm)
+node_modules/
+package-lock.json
+
+# Compiled files
+*.so
+*.out
+*.o
