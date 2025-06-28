@@ -226,6 +226,20 @@ function setupDashboardCardActions() {
   }
 }
 
+// === Setup Quest Progress Bars ===
+function setupQuestProgress() {
+  const questBars = document.querySelectorAll('.quest-item .filled');
+  questBars.forEach(el => {
+    const value = parseInt(el.dataset.progress);
+    if (!isNaN(value) && value >= 0 && value <= 100) {
+      el.style.width = value + '%';
+    } else {
+      el.style.width = '0%';
+      console.warn('Invalid progress value:', value);
+    }
+  });
+}
+
 // === Inisialisasi Semua ===
 document.addEventListener('DOMContentLoaded', () => {
   createParticles();
@@ -235,4 +249,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCtaObserver();
   setupModalControls();
   setupDashboardCardActions();
+  setupQuestProgress();
 });

@@ -1,17 +1,37 @@
 <h2 class="section-title">Dasbor Utama</h2>
 <div class="cards-grid">
 
-  <!-- Misi Aktif -->
-  <div class="card clickable" id="cardQuest" role="button" tabindex="0">
-    <div class="card-header">
-      <div class="card-icon"><img src="{{ url_for('static', filename='images/icon-small/rocket.png') }}" alt="Modul Icon" /></div>
-      <div class="card-title">Misi Aktif</div>
+<!-- Misi Aktif -->
+<div class="card clickable" id="cardQuest" role="button" tabindex="0">
+  <div class="card-header">
+    <div class="card-icon">
+      <img src="{{ url_for('static', filename='images/icon-small/rocket.png') }}" alt="Misi Icon" />
     </div>
-    <div class="card-description">
-      {{ user.active_quests }} misi tersisa hari ini.<br>
-      Segera selesaikan untuk reward XP & badge!
-    </div>
+    <div class="card-title">Misi Aktif</div>
   </div>
+  <div class="card-description">
+
+    {% if user.active_quests %}
+      <ul class="quest-list">
+        {% for quest in user.active_quests[:2] %}
+          <li class="quest-item">
+            <strong>{{ quest.title }}</strong><br>
+            <small>Progress: {{ quest.progress }}%</small>
+            <div class="progress-bar-mini">
+              <div class="filled" data-progress="{{ quest.progress }}"></div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <a href="/quest" class="link-misi">Lihat Semua Misi →</a>
+    {% else %}
+      Tidak ada misi aktif hari ini.<br>
+      <a href="/quest" class="link-misi">Mulai misi sekarang!</a>
+    {% endif %}
+
+  </div>
+</div>
+
 
   <!-- Progres Belajar -->
   <div class="card clickable" id="cardProgress" role="button" tabindex="0">
